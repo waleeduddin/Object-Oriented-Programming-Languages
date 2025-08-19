@@ -1,0 +1,56 @@
+#include <iostream>
+
+int main() {
+    // Declare variables to store marks for three subjects.
+    // We use 'float' to allow for fractional marks and percentages.
+    float sub1, sub2, sub3;
+    float total, percentage;
+    char grade;
+
+    // Prompt the user to enter marks for each subject.
+    std::cout << "Enter marks for three subjects (out of 100):" << std::endl;
+
+    // Use 'std::cin' to get user input for each subject.
+    std::cout << "Subject 1: ";
+    std::cin >> sub1;
+
+    std::cout << "Subject 2: ";
+    std::cin >> sub2;
+
+    std::cout << "Subject 3: ";
+    std::cin >> sub3;
+
+    // Check for valid input (marks should be between 0 and 100).
+    if (sub1 < 0 || sub1 > 100 || sub2 < 0 || sub2 > 100 || sub3 < 0 || sub3 > 100) {
+        std::cout << "Invalid marks entered. Marks must be between 0 and 100." << std::endl;
+        return 1; // Exit the program with an error code.
+    }
+
+    // Calculate the total marks.
+    total = sub1 + sub2 + sub3;
+
+    // Calculate the percentage. The total possible marks are 300 (100 * 3).
+    percentage = (total / 300.0) * 100.0;
+
+    // Determine the grade based on the percentage using if-else if-else statements.
+    if (percentage >= 90) {
+        grade = 'A';
+    } else if (percentage >= 80) {
+        grade = 'B';
+    } else if (percentage >= 70) {
+        grade = 'C';
+    } else if (percentage >= 60) {
+        grade = 'D';
+    } else {
+        grade = 'F';
+    }
+
+    // Print the final marksheet summary to the console.
+    std::cout << "\n--- Marksheet ---" << std::endl;
+    std::cout << "Total Marks: " << total << std::endl;
+    std::cout << "Percentage: " << percentage << "%" << std::endl;
+    std::cout << "Grade: " << grade << std::endl;
+    std::cout << "-----------------" << std::endl;
+
+    return 0; // Exit the program successfully.
+}
