@@ -1,0 +1,78 @@
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+public class ScienceMarksheet {
+    public static void main(String[] args) {
+        // Create a Scanner object to read user input from the console.
+        Scanner input = new Scanner(System.in);
+        
+        // Declare variables to store marks for each subject and calculated results.
+        double physicsMarks, chemistryMarks, biologyMarks;
+        double totalMarks;
+        double percentage;
+        String grade;
+
+        System.out.println("--- School Science Marksheet ---");
+        System.out.println("Enter marks for the following subjects (out of 100):");
+
+        try {
+            // Get marks for Physics with input validation.
+            System.out.print("Physics: ");
+            physicsMarks = input.nextDouble();
+            if (physicsMarks < 0 || physicsMarks > 100) {
+                System.out.println("Invalid marks. Please enter a value between 0 and 100.");
+                return; // Exit the program.
+            }
+
+            // Get marks for Chemistry with input validation.
+            System.out.print("Chemistry: ");
+            chemistryMarks = input.nextDouble();
+            if (chemistryMarks < 0 || chemistryMarks > 100) {
+                System.out.println("Invalid marks. Please enter a value between 0 and 100.");
+                return; // Exit the program.
+            }
+
+            // Get marks for Biology with input validation.
+            System.out.print("Biology: ");
+            biologyMarks = input.nextDouble();
+            if (biologyMarks < 0 || biologyMarks > 100) {
+                System.out.println("Invalid marks. Please enter a value between 0 and 100.");
+                return; // Exit the program.
+            }
+
+        } catch (InputMismatchException e) {
+            // Handle non-numeric input gracefully.
+            System.out.println("Invalid input. Please enter only numbers.");
+            return; // Exit the program.
+        } finally {
+            // Close the scanner to prevent resource leaks.
+            input.close();
+        }
+
+        // Calculate the total marks.
+        totalMarks = physicsMarks + chemistryMarks + biologyMarks;
+        
+        // Calculate the percentage. The total possible marks are 300.
+        percentage = (totalMarks / 300.0) * 100.0;
+
+        // Determine the grade based on the percentage.
+        if (percentage >= 90) {
+            grade = "A";
+        } else if (percentage >= 80) {
+            grade = "B";
+        } else if (percentage >= 70) {
+            grade = "C";
+        } else if (percentage >= 60) {
+            grade = "D";
+        } else {
+            grade = "F";
+        }
+
+        // Print the marksheet summary.
+        System.out.println("\n--- Results Summary ---");
+        System.out.printf("Total Marks: %.2f / 300%n", totalMarks);
+        System.out.printf("Percentage: %.2f%%%n", percentage);
+        System.out.println("Final Grade: " + grade);
+        System.out.println("-----------------------");
+    }
+}
